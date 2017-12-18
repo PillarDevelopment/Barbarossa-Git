@@ -76,7 +76,7 @@ contract TokenERC20 is Ownable
 
     uint256 public totalSupply;
     uint256 public avaliableSupply;
-    uint256 public buyPrice = 20000000000000000 wei; 
+    uint256 public buyPrice = 50000000000000000 wei; 
 
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
