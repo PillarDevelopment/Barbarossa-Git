@@ -68,7 +68,7 @@ contract Migrations is Ownable {
     Migrations upgraded = Migrations(newAddress);
     upgraded.setCompleted(lastCompletedMigration);
   }
-
+}
 
 interface tokenRecipient
 {
