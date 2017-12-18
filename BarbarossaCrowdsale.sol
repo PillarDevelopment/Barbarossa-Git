@@ -1,5 +1,3 @@
-pragma solidity ^0.4.18;
-
 library SafeMath
 {
     function mul(uint256 a, uint256 b) internal pure
@@ -59,6 +57,19 @@ contract Ownable
     }
 }
 
+contract Migrations is Ownable {
+  uint256 public lastCompletedMigration;
+
+  function setCompleted(uint256 completed) onlyOwner public {
+    lastCompletedMigration = completed;
+  }
+
+  function upgrade(address newAddress) onlyOwner public {
+    Migrations upgraded = Migrations(newAddress);
+    upgraded.setCompleted(lastCompletedMigration);
+  }
+
+
 interface tokenRecipient
 {
     function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public;
@@ -76,7 +87,7 @@ contract TokenERC20 is Ownable
 
     uint256 public totalSupply;
     uint256 public avaliableSupply;
-    uint256 public buyPrice = 50000000000000000 wei; 
+    uint256 public buyPrice = 20000000000000000 wei; 
 
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
@@ -150,7 +161,9 @@ contract TokenERC20 is Ownable
         returns (bool success)
     {
         allowance[msg.sender][_spender] = allowance[msg.sender][_spender].add(_addedValue);
+
         Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
+
         return true;
     }
 
@@ -215,18 +228,21 @@ contract Pauseble is TokenERC20
     function pause() public onlyOwner
     {
         paused = true;
+
         EPause();
     }
 
     function pauseInternal() internal
     {
         paused = true;
+
         EPause();
     }
 
     function unpause() public onlyOwner
     {
         paused = false;
+
         EUnpause();
     }
 }
@@ -314,4 +330,4 @@ contract BarbarossaCrowdsale is Pauseble
     {
         return ((_amount * _percent) / 100);
     }
-}
+} 
