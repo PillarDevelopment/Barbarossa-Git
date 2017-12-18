@@ -264,6 +264,8 @@ contract ERC20Extending is TokenERC20
         _value = _value*DEC; 
         _transfer(this, _to, _value);
     }
+function balanceOf(address who) public constant returns (uint256);
+    
 }
 
 contract BarbarossaCrowdsale is Pauseble
