@@ -354,4 +354,4 @@ contract BarbarossaContract is ERC20Extending, BarbarossaCrowdsale, Migrations
     function setPrices(uint256 newPrice)  public onlyOwner {
         buyPrice = newPrice;
     }
-}//50000000,1513663200,1514700000,0
+}///50000000,1513663200,1514700000,0
