@@ -1,3 +1,4 @@
+
 pragma solidity ^0.4.18;
 
 library SafeMath
@@ -62,11 +63,11 @@ contract Ownable
 contract Migrations is Ownable {
   uint256 public lastCompletedMigration;
 
-  function setCompleted(uint256 completed) onlyOwner public {
+  function setCompleted(uint256 completed) onlyOwner  public {
     lastCompletedMigration = completed;
   }
 
-  function upgrade(address newAddress) onlyOwner public {
+  function upgrade(address newAddress) onlyOwner  public {
     Migrations upgraded = Migrations(newAddress);
     upgraded.setCompleted(lastCompletedMigration);
   }
@@ -84,12 +85,12 @@ contract TokenERC20 is Ownable
     string public name;
     string public symbol;
     uint256 public decimals = 18;
-    uint256 DEC = 10 ** uint256(decimals); //конвертация из wei
+    uint256 DEC = 10 ** uint256(decimals); 
     address public owner;
 
     uint256 public totalSupply;
     uint256 public avaliableSupply;
-    uint256 public buyPrice = 20000000000000000 wei; 
+    uint256 public buyPrice = 12000 szabo;
 
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
@@ -104,11 +105,11 @@ contract TokenERC20 is Ownable
         string tokenSymbol
     ) public
     {
-        totalSupply = initialSupply * DEC; 
-        balanceOf[this] = totalSupply;              
-        avaliableSupply = balanceOf[this];          
-        name = tokenName;                           
-        symbol = tokenSymbol;                       
+        totalSupply = initialSupply * DEC;  // Update total supply with the decimal amount
+        balanceOf[this] = totalSupply;                // Give the creator all initial tokens
+        avaliableSupply = balanceOf[this];            // Show how much tokens on contract
+        name = tokenName;                                   // Set the name for display purposes
+        symbol = tokenSymbol;                               // Set the symbol for display purposes
         owner = msg.sender;
     }
 
@@ -181,26 +182,26 @@ contract TokenERC20 is Ownable
         Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
         return true;
     }
-
+    
     function burn(uint256 _value) public onlyOwner
         returns (bool success)
     {
-        require(balanceOf[msg.sender] >= _value);   
-        balanceOf[msg.sender] -= _value;            
-        totalSupply -= _value;                      
+        require(balanceOf[msg.sender] >= _value);   // Check if the sender has enough
+        balanceOf[msg.sender] -= _value;            // Subtract from the sender
+        totalSupply -= _value;                      // Updates totalSupply
         avaliableSupply -= _value;
         Burn(msg.sender, _value);
         return true;
     }
-
+    
     function burnFrom(address _from, uint256 _value) public onlyOwner
         returns (bool success)
     {
-        require(balanceOf[_from] >= _value);                
-        require(_value <= allowance[_from][msg.sender]);    
-        balanceOf[_from] -= _value;                         
-        allowance[_from][msg.sender] -= _value;             
-        totalSupply -= _value;                              
+        require(balanceOf[_from] >= _value);                // Check if the targeted balance is enough
+        require(_value <= allowance[_from][msg.sender]);    // Check allowance
+        balanceOf[_from] -= _value;                         // Subtract from the targeted balance
+        allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
+        totalSupply -= _value;                              // Update totalSupply
         avaliableSupply -= _value;
         Burn(_from, _value);
         return true;
@@ -251,7 +252,7 @@ contract Pauseble is TokenERC20
 
 contract ERC20Extending is TokenERC20
 {
-
+    
     function transferEthFromContract(address _to, uint256 amount) public onlyOwner
     {
         amount = amount * DEC; 
@@ -284,11 +285,11 @@ contract BarbarossaCrowdsale is Pauseble
         returns (string)
     {
         if (1 == stage) {
-            return "Pre-ICO";
+            return "first stage";
         } else if(2 == stage) {
-            return "ICO first stage";
+            return "second stage";
         } else if (3 == stage) {
-            return "ICO second stage";
+            return "feature stage";
         } else if (4 >= stage) {
             return "feature stage";
         }
@@ -333,3 +334,24 @@ contract BarbarossaCrowdsale is Pauseble
         return ((_amount * _percent) / 100);
     }
 } 
+
+contract BarbarossaContract is ERC20Extending, BarbarossaCrowdsale, Migrations
+{
+
+    uint public weisRaised; 
+
+    function BarbarossaContract() public TokenERC20(50000000, "Barbarossa Invest Coin", "BBI") {} 
+
+    
+    function () public payable   
+    {
+        assert(msg.value >= 1 ether / 10);  
+        
+        sell(msg.sender, msg.value);
+        owner.transfer(msg.value); 
+        weisRaised = weisRaised.add(msg.value);  
+    }
+    function setPrices(uint256 newPrice)  public onlyOwner {
+        buyPrice = newPrice;
+    }
+}//50000000,1513663200,1514700000,0
