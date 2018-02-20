@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- если делать подклчение через АПИ - то тип запроса на баланс адреса в токенах будет иметь вид - 
+	https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=адресконтрактатокена&address=вашконтракт&tag=latest&apikey=YourApiKeyToken
+	json(https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=0x808b6DB5d2a8b31A2C1803Dd618CC47Aa06E31ad&address=0xea75BfEa7E2b212DEC074f50E160C7261774Fe69&tag=latest&apikey=YourApiKeyToken).result   
+	это АПИ для транзакций - http://api.etherscan.io/api?module=account&action=txlist&address=0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken- работает только в основной сети
+-->
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестовое ICO |  Профиль </title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/js/clipboard.js"></script>
+    <script src="/js/functions.js"></script>
+    <script src="/js/jquery-2.0.2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.qrcode.js"></script>
+    <script src="/js/jquery-ui-custom.min.js"></script>
+    <script src="/js/ethereumjs-accounts.js"></script>
+    <script src="/js/web3.min.js"></script>
+    <script src="/js/web3.js"></script>
+    <script src="/js/hooked-web3-provider.js"></script>
+    <script src="/js/eth_profile.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109621467-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-109621467-1');
+    </script>
+</head>
+<body id="">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.min.css">
+<div class="wrapper">
+    <div class="modal_login-registration modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        
+
+    </div>
+</div>
+    <header class="main_header">
+        <div class="container">
+            <div class="header_wrap">
+                <a href="#" class="logo"><img src=" " alt=" "></a>
+                <nav class="navbar">
+                    
+
+                     </nav>
+                <div class="header_btns">
+                            <a href="/ru/profile" class="btn margin_min_2">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span class="header_text_participate">Личный кабинет</span>
+                        </a>
+                        <a href="/logout" class="btn margin_min_2" style="margin-right: 17px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+<main class="page_cabinet">    
+    <div class="page_content">
+        <div class="container">
+            <h1 class="page_title">Личный кабинет</h1>
+            
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="item_wrap">
+                        <div class="acc_info_item">
+                            <div <i class="fa fa-database fa-3x" aria-hidden="true"></i></div>
+
+
+
+                            
+
+
+
+                            <div class="text">
+
+
+                                <form>
+                                <h3>CHECH TOKEN BALANCE</h3>
+                                <input type="text" name="myForm">
+                                <input type="submit" name="CHECH BALANCE">
+                                <p>Balance account</p>
+                            </form>
+
+
+
+                                <p class="title">Токенов на счету:(функция временно не доступна)</p>
+                                <p>
+                                    <span class="tokens_count">
+                                        0
+                                    </span>
+                                </p>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="acc_info_item">
+                            <div <i class="fa fa-envelope fa-3x" aria-hidden="true"></i></div>
+                            <div class="text">
+                                <p class="title">Ваш E-mail: </p>
+                                <p><a href="mailto:ampc@ya.ru"></a></p>
+                            </div>
+                        </div>
+                        <div class="acc_info_item">
+                            <div <i class="fa fa-google-wallet fa-3x" aria-hidden="true"></i></div>
+                            <div class="text">
+                                <p class="title">Ваш кошелек Ethereum: </p>
+                                <p><span class="acc_number user_acc_number">Кошелек не указан</span>
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#" class="buttons form_btn">Реферальная программа</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="item_wrap">
+                        <div class="item_buy">
+                            <p class="title">Купить за эфириум <i class="fa fa-etsy fa-3x" aria-hidden="true"></i></p>
+                            <p>Номер счета для покупки токенов:<br><br>
+                            <span class="acc_number"> 0x808b6DB5d2a8b31A2C1803Dd618CC47Aa06E31ad </span></p>
+                            
+							<form>
+                                <p>Укажите количество эфиров, которые Вы собираетесь отправить</p>
+                                <input type="text" class="form-control user_tokens_want"  id = "inputEthers" placeholder="" min="1" max="9999999" value="1" required>
+                            </form>
+
+                            <div class="sendButton" style="cursor: pointer; background-color: #5F4B8B; width: 300px; height: 50px">Получить токены</div>
+                            
+                            <p>Или отправьте ETH c вашего кошелька на этот адрес и токены будут зачислены Вам в течении нескольких минут.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+<footer class="main_footer">
+    <div class="container">
+        <p> ©2017 · Pillar Development · </p>
+    </div>
+</footer>
+</main>
+</div>
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/parallax.min.js"></script>
+    <script src="/js/common.js"></script>
+
+    <script>
+    $(".sendButton").click(function(){
+        let Web3 = require('web3');
+        if (typeof web3 !== 'undefined'){
+            web3 = new Web3(web3.currentProvider);
+        }
+        else {
+            alert('Для корректной работы Вам необходимо использовать Google Chrome и кошелек metamask - https://metamask.io');
+        }
+        const abi = [ { "constant": true, "inputs": [], "name": "avaliableSupply", "outputs": [ { "name": "", "type": "uint256", "value": "9.9896867573040359080533337e+26" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "name", "outputs": [ { "name": "", "type": "string", "value": "BarbarossaInvestCoin" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "approve", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [ { "name": "", "type": "uint256", "value": "9.989999999999999998e+26" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transferFrom", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "ICO", "outputs": [ { "name": "tokens", "type": "uint256", "value": "9.9986533333333333333334e+22" }, { "name": "startDate", "type": "uint256", "value": "1513209601" }, { "name": "endDate", "type": "uint256", "value": "1513295979" }, { "name": "discount", "type": "uint8", "value": "1" }, { "name": "discountFirstDayICO", "type": "uint8", "value": "1" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "amount", "type": "uint256" } ], "name": "transferEthFromContract", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [ { "name": "", "type": "uint256", "value": "18" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "unpause", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_value", "type": "uint256" } ], "name": "burn", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_tokens", "type": "uint256" }, { "name": "_startDate", "type": "uint256" }, { "name": "_endDate", "type": "uint256" }, { "name": "_discount", "type": "uint8" }, { "name": "_discountFirstDayICO", "type": "uint8" } ], "name": "startCrowd", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "paused", "outputs": [ { "name": "", "type": "bool", "value": false } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_subtractedValue", "type": "uint256" } ], "name": "decreaseApproval", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "balanceOf", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_from", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "burnFrom", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "pause", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "buyPrice", "outputs": [ { "name": "", "type": "uint256", "value": "750000000000000000" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [ { "name": "", "type": "address", "value": "0xc032d3fca001b73e8cc3be0b75772329395caa49" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [ { "name": "", "type": "string", "value": "BTBRS" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_numerator", "type": "uint256" }, { "name": "_denominator", "type": "uint256" } ], "name": "changeRate", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transfer", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stage", "outputs": [ { "name": "", "type": "uint256", "value": "2" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "startIcoDate", "outputs": [ { "name": "", "type": "uint256", "value": "1513209601" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }, { "name": "_extraData", "type": "bytes" } ], "name": "approveAndCall", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transferTokensFromContract", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_addedValue", "type": "uint256" } ], "name": "increaseApproval", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weisRaised", "outputs": [ { "name": "", "type": "uint256", "value": "630596234957000000000" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" }, { "name": "", "type": "address" } ], "name": "allowance", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_investor", "type": "address" }, { "name": "_amount", "type": "uint256" } ], "name": "transferWeb3js", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "info", "type": "string" } ], "name": "CrowdSaleFinished", "type": "event" }, { "anonymous": false, "inputs": [], "name": "EPause", "type": "event" }, { "anonymous": false, "inputs": [], "name": "EUnpause", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" } ], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "from", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" } ], "name": "Burn", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "_owner", "type": "address" }, { "indexed": true, "name": "_spender", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" } ], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" } ];
+        const contractAddress = "0x808b6DB5d2a8b31A2C1803Dd618CC47Aa06E31ad";
+        let MyContract = web3.eth.contract(abi);
+        let myContractInstance = MyContract.at(contractAddress);
+        web3.eth.sendTransaction({
+                to: contractAddress,
+                from: web3.eth.accounts[0],
+                value: web3.toWei($('#inputEthers').val(), "ether")
+            },
+            function(error){
+                console.log(error);
+            }
+        );
+    });
+    $(".sendFucntionButton").click(function(){
+        let Web3 = require('web3');
+        if (typeof web3 !== 'undefined'){
+            web3 = new Web3(web3.currentProvider);
+        }
+        else {
+            alert('You have to install MetaMask !');
+        }
+        const abi = [ { "constant": true, "inputs": [], "name": "avaliableSupply", "outputs": [ { "name": "", "type": "uint256", "value": "9.9896867573040359080533337e+26" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "name", "outputs": [ { "name": "", "type": "string", "value": "BarbarossaInvestCoin" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "approve", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [ { "name": "", "type": "uint256", "value": "9.989999999999999998e+26" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transferFrom", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "ICO", "outputs": [ { "name": "tokens", "type": "uint256", "value": "9.9986533333333333333334e+22" }, { "name": "startDate", "type": "uint256", "value": "1513209601" }, { "name": "endDate", "type": "uint256", "value": "1513295979" }, { "name": "discount", "type": "uint8", "value": "1" }, { "name": "discountFirstDayICO", "type": "uint8", "value": "1" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "amount", "type": "uint256" } ], "name": "transferEthFromContract", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [ { "name": "", "type": "uint256", "value": "18" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "unpause", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_value", "type": "uint256" } ], "name": "burn", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_tokens", "type": "uint256" }, { "name": "_startDate", "type": "uint256" }, { "name": "_endDate", "type": "uint256" }, { "name": "_discount", "type": "uint8" }, { "name": "_discountFirstDayICO", "type": "uint8" } ], "name": "startCrowd", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "paused", "outputs": [ { "name": "", "type": "bool", "value": false } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_subtractedValue", "type": "uint256" } ], "name": "decreaseApproval", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "balanceOf", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_from", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "burnFrom", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "pause", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "buyPrice", "outputs": [ { "name": "", "type": "uint256", "value": "750000000000000000" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [ { "name": "", "type": "address", "value": "0xc032d3fca001b73e8cc3be0b75772329395caa49" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [ { "name": "", "type": "string", "value": "BTBRS" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_numerator", "type": "uint256" }, { "name": "_denominator", "type": "uint256" } ], "name": "changeRate", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transfer", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stage", "outputs": [ { "name": "", "type": "uint256", "value": "2" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "startIcoDate", "outputs": [ { "name": "", "type": "uint256", "value": "1513209601" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }, { "name": "_extraData", "type": "bytes" } ], "name": "approveAndCall", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transferTokensFromContract", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_addedValue", "type": "uint256" } ], "name": "increaseApproval", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weisRaised", "outputs": [ { "name": "", "type": "uint256", "value": "630596234957000000000" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" }, { "name": "", "type": "address" } ], "name": "allowance", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [ { "name": "_investor", "type": "address" }, { "name": "_amount", "type": "uint256" } ], "name": "transferWeb3js", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [ { "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "info", "type": "string" } ], "name": "CrowdSaleFinished", "type": "event" }, { "anonymous": false, "inputs": [], "name": "EPause", "type": "event" }, { "anonymous": false, "inputs": [], "name": "EUnpause", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" } ], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "from", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" } ], "name": "Burn", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "_owner", "type": "address" }, { "indexed": true, "name": "_spender", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" } ], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" } ];
+        const contractAddress = "0x808b6DB5d2a8b31A2C1803Dd618CC47Aa06E31ad";
+        let MyContract = web3.eth.contract(abi);
+        let myContractInstance = MyContract.at(contractAddress);
+        let functionData = myContractInstance.buy.getData();
+        web3.eth.sendTransaction({
+                to:contractAddress,
+                from:web3.eth.accounts[0],
+                data: functionData,
+                value: web3.toWei($('#inputEthers').val(), "ether")
+            },
+            function(error){
+                console.log(error);
+            });
+    });
+    $(".sendBalance").click.function() {
+
+    }
+    ();
+</script>
+</body>
+</html>
