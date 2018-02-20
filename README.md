@@ -6,3 +6,5 @@ Investing token
 [ABI INTERFACE](https://github.com/PillarDevelopment/Barbarossa-Git/blob/master/ABI.json)
 
 [TOKEN HOLDERS](https://etherscan.io/TOKEN/0x8491083a99F2c52Ffbc7ead44242680666bc4d1E#balances)
+
+[Sourse code](https://github.com/PillarDevelopment/Barbarossa-Git/contracts/BarbarossaInvestToken.sol)
