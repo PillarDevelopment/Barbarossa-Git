@@ -9,4 +9,4 @@ Investing token
 
 [Source code](https://github.com/PillarDevelopment/Barbarossa-Git/blob/master/contracts/BarbarossaInvestToken.sol)
 
-[Site](http://invest1bb1.net)
+[Site](http://barin.io)
