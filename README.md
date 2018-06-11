@@ -12,7 +12,7 @@
 [Site](http://barin.io)
 
 
-Specification
+# Specification
 
 Публичные поля:
 
@@ -74,14 +74,17 @@ Specification
 `transferOwnership` - позволяет изменить владельца контракта;
 
 
-Инструкция по использованию
+# Инструкция по использованию
+
 1) После деплоя контракта для изменения жтапа распродаж необходимо вызвать фунцию startSelling, куда в качестве аргументов передать
 количество токенов для этапа(целое число), дату начала в unix, дату окончания в unix, скидку целым числом(0 если нет)
 
-[концертер в unix time - unixtimestamp](https://www.unixtimestamp.com/index.php)
+[конвертер в unix time - unixtimestamp](https://www.unixtimestamp.com/index.php)
 
-[концертор в wei - etherconverter](https://etherconverter.online/)
+[конвертор в wei - etherconverter](https://etherconverter.online/)
 
 2) для изменения цены токена необходимо вызвать фунцию setPrice куда в качестве аргумента передать новую цену в wei
+
 3) для снятия операций с токенами с паузы необходимо вызвать функцию unpause без аргумента
-4)
+
+4)для ажминистрирования контракта необхоимо перейти по ссылке https://wallet.ethereum.org/contracts  при активированном metamask и выбрать соответствующий контракт(предварительно вставить адрес и JSON интерфейс контракта)
