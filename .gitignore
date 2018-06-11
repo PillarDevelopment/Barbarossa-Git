@@ -1,6 +1,6 @@
 /ТЗ/
 /full-test_site/
 *.DS_Store
-*barin.html
-*fuc.sol
-*profile.html
+/fuc.sol
+/profile.html
+/barin.html
