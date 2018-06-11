@@ -1,4 +1,4 @@
-![Иллюстрация к проекту](https://github.com/jon/coolproject/raw/master/image/image.png)
+![Иллюстрация к проекту](https://github.com/PillarDevelopment/Barbarossa-Git/blob/master/site/img/Снимок%20экрана%202018-06-11%20в%2011.21.09.png)
 
 ![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
 
