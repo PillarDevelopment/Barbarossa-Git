@@ -1,16 +1,6 @@
 ![Иллюстрация к проекту](https://github.com/PillarDevelopment/Barbarossa-Git/blob/master/site/img/Снимок%20экрана%202018-06-11%20в%2011.21.09.png)
 
-![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
-
-{username} — ваш ник на ГитХабе;
-{repository} — репозиторий где хранятся картинки;
-{branch} — ветка репозитория;
-{path} — путь к месту нахождения картинки.
-
-
-
 # Barbarossa Investing token
-
 
 [ADDRESS IN ETHERSCAN.IO](https://etherscan.io/address/0x8491083a99F2c52Ffbc7ead44242680666bc4d1E)
 
