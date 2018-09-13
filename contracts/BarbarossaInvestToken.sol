@@ -161,9 +161,8 @@ contract Pauseble is TokenERC20 {
     event EPause();
     event EUnpause();
 
-    bool public paused = false;
-   
-   
+    bool public paused = true;
+  
     modifier whenNotPaused() {
       require(!paused);
       _;
@@ -201,9 +200,7 @@ contract BarbarossaContract is Pauseble {
   
     uint public weisRaised; 
 
-
-    constructor() public TokenERC20(50000000, "Barbarossa Invest Token", "BIT") {
-    } 
+    constructor() public TokenERC20(50000000, "Barbarossa Invest Token", "BIT") {} 
 
 
     function () public payable {
@@ -231,4 +228,4 @@ contract BarbarossaContract is Pauseble {
     function setPrices(uint256 newPrice) public onlyOwner {
         buyPrice = newPrice;
     }
-}///50000000,1513663200,1514700000,0
+}
