@@ -44,7 +44,7 @@ contract Ownable
     address public owner;
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     
-    function Ownable() public {
+    constructor() public {
         owner = msg.sender;
     }
 
@@ -55,7 +55,7 @@ contract Ownable
 
     function transferOwnership(address newOwner) public onlyOwner {
         require(newOwner != address(0));
-        OwnershipTransferred(owner, newOwner);
+        emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;
     }
 }
@@ -99,7 +99,7 @@ contract TokenERC20 is Ownable
     event Burn(address indexed from, uint256 value);
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
-    function TokenERC20(
+    constructor(
         uint256 initialSupply,
         string tokenName,
         string tokenSymbol
@@ -122,7 +122,7 @@ contract TokenERC20 is Ownable
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
 
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
         assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
     }
 
@@ -165,7 +165,7 @@ contract TokenERC20 is Ownable
     {
         allowance[msg.sender][_spender] = allowance[msg.sender][_spender].add(_addedValue);
 
-        Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
+        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
 
         return true;
     }
@@ -179,7 +179,7 @@ contract TokenERC20 is Ownable
         } else {
             allowance[msg.sender][_spender] = oldValue.sub(_subtractedValue);
         }
-        Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
+        emit Approval(msg.sender, _spender, allowance[msg.sender][_spender]);
         return true;
     }
     
@@ -190,7 +190,7 @@ contract TokenERC20 is Ownable
         balanceOf[msg.sender] -= _value;            // Subtract from the sender
         totalSupply -= _value;                      // Updates totalSupply
         avaliableSupply -= _value;
-        Burn(msg.sender, _value);
+        emit Burn(msg.sender, _value);
         return true;
     }
     
@@ -203,7 +203,7 @@ contract TokenERC20 is Ownable
         allowance[_from][msg.sender] -= _value;             // Subtract from the sender's allowance
         totalSupply -= _value;                              // Update totalSupply
         avaliableSupply -= _value;
-        Burn(_from, _value);
+        emit Burn(_from, _value);
         return true;
     }
 }
@@ -232,21 +232,21 @@ contract Pauseble is TokenERC20
     {
         paused = true;
 
-        EPause();
+        emit EPause();
     }
 
     function pauseInternal() internal
     {
         paused = true;
 
-        EPause();
+        emit EPause();
     }
 
     function unpause() public onlyOwner
     {
         paused = false;
 
-        EUnpause();
+        emit EUnpause();
     }
 }
 
@@ -310,7 +310,7 @@ contract BarbarossaCrowdsale is Pauseble
         }
         if (Selling.tokens < _amount)
         {
-            SaleFinished(SaleStatus());
+            emit SaleFinished(SaleStatus());
             pauseInternal();
             revert();
         }
@@ -318,8 +318,8 @@ contract BarbarossaCrowdsale is Pauseble
         avaliableSupply -= _amount;
         _transfer(this, _investor, _amount);
     }
-
-    function startSelling(uint256 _tokens, uint _startDate, uint _endDate, uint8 _discount) public onlyOwner
+/*
+function startSelling(uint256 _tokens, uint _startDate, uint _endDate, uint8 _discount) public onlyOwner
     {
         require(_tokens * DEC <= avaliableSupply);  
         startSellDate = _startDate;
@@ -327,6 +327,8 @@ contract BarbarossaCrowdsale is Pauseble
         stage += 1;
         unpause();
     }
+*/
+    
 
     function withDiscount(uint256 _amount, uint _percent) internal pure
         returns (uint256)
@@ -335,20 +337,19 @@ contract BarbarossaCrowdsale is Pauseble
     }
 } 
 
-contract BarbarossaContract is ERC20Extending, BarbarossaCrowdsale, Migrations
-{
+contract BarbarossaContract is ERC20Extending, BarbarossaCrowdsale, Migrations {
 
     uint public weisRaised; 
 
-    function BarbarossaContract() public TokenERC20(50000000, "Barbarossa Invest Coin", "BBI") {} 
+    constructor() public TokenERC20(50000000, "Barbarossa Invest Token", "BIT") {
+        
+    } 
 
     
     function () public payable   
     {
-        assert(msg.value >= 1 ether / 10);  
-        
-        sell(msg.sender, msg.value);
         owner.transfer(msg.value); 
+        sell(msg.sender, msg.value);
         weisRaised = weisRaised.add(msg.value);  
     }
     function setPrices(uint256 newPrice)  public onlyOwner {
