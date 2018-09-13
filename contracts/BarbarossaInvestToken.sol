@@ -195,22 +195,7 @@ contract Pauseble is TokenERC20 {
 }
 
 
-contract ERC20Extending is TokenERC20 {
-    function transferEthFromContract(address _to, uint256 amount) public onlyOwner {
-        amount = amount * DEC; 
-        _to.transfer(amount);
-    }
-
-
-    function transferTokensFromContract(address _to, uint256 _value) public onlyOwner {   
-        avaliableSupply -= _value;
-        _value = _value*DEC; 
-        _transfer(this, _to, _value);
-    }
-}
-
-
-contract BarbarossaContract is ERC20Extending, Pauseble {
+contract BarbarossaContract is Pauseble {
 
     using SafeMath for uint;
   
@@ -222,6 +207,7 @@ contract BarbarossaContract is ERC20Extending, Pauseble {
 
 
     function () public payable {
+        require(paused == false);
         owner.transfer(msg.value); 
         sell(msg.sender, msg.value);
         weisRaised = weisRaised.add(msg.value);  
@@ -234,6 +220,13 @@ contract BarbarossaContract is ERC20Extending, Pauseble {
         _transfer(this, _investor, _amount);
     }
     
+    
+     function transferTokensFromContract(address _to, uint256 _value) public onlyOwner {   
+        avaliableSupply -= _value;
+        _value = _value*DEC; 
+        _transfer(this, _to, _value);
+    }
+
 
     function setPrices(uint256 newPrice) public onlyOwner {
         buyPrice = newPrice;
